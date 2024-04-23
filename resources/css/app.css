@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    *{
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-user-drag: none;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth !important;
+
+        /* -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+        user-select: none; */
+    }
+    
+    html {
+        font-family: 'Rubik', sans-serif !important;
+    }
+
+    h1,h2,h3,h4,h5,h6 {
+        font-family: 'Rubik', sans-serif !important;
+    }
+    
+    p,label {
+        font-family: 'Rubik', sans-serif !important;
+    }
+
+    .longpress {
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent !important;
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        -o-user-select: none !important;
+        user-select: none !important;
+        -webkit-user-drag: none !important;
+        -webkit-overflow-scrolling: touch !important;
+        scroll-behavior: smooth !important;
+    }
+
+    @variants responsive {
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar::-webkit-scrollbar-thumb {
+            background-color: transparent;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            scrollbar-width: thin;
+            scrollbar-color: transparent transparent;
+        }
+    }
+
+    [x-cloak], [v-cloak] { 
+        display: none !important;
+    }
+}
