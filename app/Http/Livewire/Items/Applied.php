@@ -38,6 +38,10 @@ class Applied extends Component
         ]);
     }
 
+    function showInfo($owner_id) {
+        dd($owner_id);
+    }
+
     // Save Role from Modal
     public function saveAdminWillDeleted($enc_id)
     {
@@ -70,6 +74,7 @@ class Applied extends Component
             ['id', '=', $id],
         ])->delete();
 
+        //$this->item->update(['status' => 'Available']);
         session()->flash('message', $isDeleted ? __('Order canceled successfully') : __('Failed to cancelate order, please try again!'));
         session()->flash('status', $isDeleted);
     }

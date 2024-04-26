@@ -107,9 +107,7 @@
                                                     </li>
                                                 
                                                  
-                                                    <li><a href="cart.html">Cart Page</a></li>
-                                                    <li><a href="checkout.html">Checkout Page</a></li>
-                                                    <li><a href="wishlist.html">Wishlist Page</a></li>
+                                                
                                                 </ul>
                                                 <!-- Home Version Dropdown End -->
                                             </li>                                        

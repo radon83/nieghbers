@@ -126,7 +126,7 @@ class Create extends Component
             'description_ar' => 'required|string',
             'description_en' => 'required|string',
             'fees' => 'required|numeric|min:1',
-            'time' => 'required|numeric|min:1',
+            'time' => 'nullable|numeric|min:1|max:25',
             'selectedCity' => 'required|integer|exists:cities,id',
             'selectedCategory' => 'required|integer|exists:categories,id',
             'selectedPlace' => 'required|integer|exists:places,id',

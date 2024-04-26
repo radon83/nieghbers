@@ -1,25 +1,7 @@
 <section class="app-item-list">
     <x-alert-component />
 
-    <!-- items filter start -->
-    <div class="card">
-        <h5 class="card-header">{{ __('Search Filter') }}</h5>
-        <div class="d-flex justify-content-between align-items-center mx-50 row pt-0 pb-2">
-            <div class="col-md-12 user_status">
-                <x-select-component label="Avilability" name="availability" :options="[
-                    true => __('Trashed'),
-                    false => __('Not Trashed'),
-                ]"
-                    icon='<svg xmlns="http://www.w3.org/2000/svg"
-                width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-item">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-                </svg>' />
-            </div>
-        </div>
-    </div>
-    <!-- items filter end -->
+ 
     <!-- list section start -->
     <div class="card">
         <div class="card-datatable table-responsive pt-0">
@@ -161,6 +143,23 @@
                                                 </svg>
                                                 <span>{{ __('Cancel') }}</span>
                                             </button>
+                                        @elseif ($item->status == 'approved')
+                                        <button type="button"
+                                                    wire:click="saveApplyItem('{{ Crypt::encrypt($item->id) }}')"
+                                                    data-bs-toggle="modal" data-bs-target="#info"
+                                                    class="btn btn-icon btn-outline-primary waves-effect">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                        height="24" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round" class="feather feather-command">
+                                                        <path
+                                                            d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z">
+                                                        </path>
+                                                    </svg>
+                                                </button>
+                                            
+                                        
+                                         
                                         @else
                                             #
                                         @endif
@@ -179,6 +178,31 @@
 
             </div>
         </div>
+        <div class="modal fade modal-info text-start" id="info" tabindex="-1" wire:ignore
+        aria-labelledby="myModalLabel130" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel130">{{ __('User Information') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <x-input-component label="User Name" name="userName" type="text"
+                        icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>' />
+                    <x-input-component label="Email" name="email" type="email"
+                        icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>' />
+                    <x-input-component label="Phone Number" name="phoneNumber" type="tel"
+                        icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M16 2a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v0a2 2 0 0 1 2-2h1"></path><path d="M15 22h2a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v0a2 2 0 0 1 2-2z"></path><path d="M4 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2v-12a2 2 0 0 1 2-2z"></path></svg>' />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-bs-dismiss="modal"
+                        wire:click="applyItem()">{{ __('Apply') }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
         <div class="modal fade text-start modal-warning" id="warning" tabindex="-1" wire:ignore
             aria-labelledby="myModalLabel140" aria-hidden="true">

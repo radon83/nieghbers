@@ -60,11 +60,9 @@ class ProductComponent extends Component
     
         // Update the status of the item to 'unavailable'
         //$newBook = book::find($this->book_id);
-        $this->item->update(['status' => 'In use']);
+        $this->item->update(['status' => 'Pending']);
         
         
-        $this->showElement = false;
-        $this->emit('refreshPage');
     
         return redirect('/dashboard/applied-items')->with('status', 'Loan request has been added!');
         //session()->flash('status', $isDeleted);

@@ -85,5 +85,13 @@ class Requested extends Component
         ])->update([
             'status' => $action,
         ]);
+        if($action == "canceled"){
+             item::where('id',Crypt::decrypt($enc_id))->update(['status' => 'Available']);
+        }elseif($action == "approved"){
+            item::where('id',Crypt::decrypt($enc_id))->update(['status' => 'In use']);
+        }
+       
     }
+
+ 
 }
