@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\Route;
 
 // Control Panel - Routes
 Route::prefix('dashboard')->middleware(['auth:admin,user', 'prevent_blocked_users', 'settings'])->group(function () {
-    //Route::get('/', [ControlPanelController::class, 'getControlPanel'])->name('control.panel');
+    Route::get('/', [ControlPanelController::class, 'getControlPanel'])->name('control.panel');
     Route::get('{role}/assign', [AuthenticationController::class, 'assignPermissions'])->name('roles.assign');
     Route::get('/my-items', [ItemController::class, 'myItems'])->name('items.own');
     Route::get('/applied-items', [ItemController::class, 'appliedItems'])->name('items.applied');

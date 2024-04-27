@@ -131,7 +131,6 @@ if (!function_exists('detectUserLocation')) {
                 $city->save();
             }
 
-
             UserLocation::create([
                 'user_id' => $userId,
                 'long' => $long,

@@ -69,10 +69,7 @@
         <div class="container">
             <div class="row">
                 <!-- Main Thumbnail Image Start -->
-                <div class="col-lg-5">
-                    
-                        
-                     
+                <div class="col-lg-5">                   
                     <div class="tab-content">
                         <div id="thumb1" class="tab-pane active">
                             @if ($item->images)
@@ -138,15 +135,10 @@
                         <div class="box-quantity">
                             <form action="#">
                    
-                                <a class="add-cart" href="{{ route('items.index') }}">Request item</a>
+                                <a class="add-cart" x-on:click="popup = ! popup" >Request item</a>
                             </form>
                         </div>
-                        <div class="product-link">
-                            <ul class="list-inline">
-                             
-                                <li><a href="#">Email</a></li>
-                            </ul>
-                        </div>
+                       
                         <p class="ptb-20">{{ session('lang') == 'ar' ? $item->description_ar : $item->description_en }}</p>
                     </div>
                 </div>
@@ -254,86 +246,84 @@
                                                         x-transition:leave-start="transform opacity-100"
                                                         x-transition:leave-end="transform translate-y-0 opacity-100"
                                                     >
-
-                                                    <div class="col-sm-12">
-                                                 
-                                                        <!-- Product Thumbnail Tab Content Start -->
-                                                        <div class="tab-content thumb-content border-default">
+                                                       <div class="col-sm-12">
                                                     
-                                                                <!-- Reviews Start -->
-                                                                <div class="review">
-                                                                    <div class="group-title">
-                                                                        <h2>Request {{ session('lang') == 'ar' ? $ri->name_ar : $ri->name_en }} Item </h2>
-                                                                    </div>
-                                                                    <h4 class="review-mini-title">Owner: {{$ri->user->fname}}</h4>
-                                                                    <ul class="review-list">
-                                                                        <!-- Single Review List Start -->
-                                                                    
-                                                                        <span>Note:</span><br>
+                                                            <!-- Product Thumbnail Tab Content Start -->
+                                                            <div class="tab-content thumb-content border-default">
+                                                        
+                                                                    <!-- Reviews Start -->
+                                                                    <div class="review">
+                                                                        <div class="group-title">
+                                                                            <h2>Request {{ session('lang') == 'ar' ? $ri->name_ar : $ri->name_en }} Item </h2>
+                                                                        </div>
+                                                                        <h4 class="review-mini-title">Owner: {{$ri->user->fname}}</h4>
+                                                                        <ul class="review-list">
+                                                                            <!-- Single Review List Start -->
                                                                         
-                                                                        <label>* if any damage or lost for the item user have to pay {{$ri->fee}} $</label><br>
-                                                                        <label>* the max. allowed days to borrow the item is {{$ri->allow_time}}</label><br>
-                                                                        <label>* if a user didn't return the item in the agreed day, he/she has to pay {{$ri->fee}} $</label>
-                                                                    
-                                                                        <!-- Single Review List End -->
-                                                                         <!-- Single Review List Start -->
-                                                                         <li>
-                                                                            <form style="margin: 44px;">
+                                                                            <span>Note:</span><br>
                                                                             
-                                                                                <div class="review_form_field">
-                                                                                    <div class="input__box">
-                                                                                       
-                                                                                        <input id="item_id" wire:model="item_id" type="hidden" name="item_id">
-                                                                                        @error('item_id') <span class="text-danger small">{{ $message }}</span>@enderror                                            
-                                                                                    </div>
-                                                                                    <div class="input__box">
-                                                                                        <span>Issued Date</span>
-                                                                                        <input id="nickname_field" wire:model="issued_date" type="date" name="nickname">
-                                                                                        @error('issued_date') <span class="text-danger small">{{ $message }}</span>@enderror                                            
-                                                                                    </div>
-                                                                                    <div class="input__box">
-                                                                                        <span>Retuen Date</span>
-                                                                                        <input id="summery_field" wire:model="return_date" type="date" name="summery">
-                                                                                        @error('return_date') <span class="text-danger small">{{ $message }}</span>@enderror
-                                                                                    </div>
-                                    
-                                                                                   
-                                                                                    <div class="review-form-actions">
-                                                                                        @if (Auth::check())
-                                                                                            @if ($ri->status == 'In use'|| $ri->status == 'Pending')
-                                                                                                <button disabled>item status is not available</button>
+                                                                            <label>* if any damage or lost for the item user have to pay {{$ri->fee}} $</label><br>
+                                                                            <label>* the max. allowed days to borrow the item is {{$ri->allow_time}}</label><br>
+                                                                            <label>* if a user didn't return the item in the agreed day, he/she has to pay {{$ri->fee}} $</label>
+                                                                        
+                                                                            <!-- Single Review List End -->
+                                                                            <!-- Single Review List Start -->
+                                                                            <li>
+                                                                                <form style="margin: 44px;">
+                                                                                
+                                                                                    <div class="review_form_field">
+                                                                                        <div class="input__box">
+                                                                                        
+                                                                                            <input id="item_id" wire:model="item_id" type="hidden" name="item_id">
+                                                                                            @error('item_id') <span class="text-danger small">{{ $message }}</span>@enderror                                            
+                                                                                        </div>
+                                                                                        <div class="input__box">
+                                                                                            <span>Issued Date</span>
+                                                                                            <input id="nickname_field" wire:model="issued_date" type="date" name="nickname">
+                                                                                            @error('issued_date') <span class="text-danger small">{{ $message }}</span>@enderror                                            
+                                                                                        </div>
+                                                                                        <div class="input__box">
+                                                                                            <span>Retuen Date</span>
+                                                                                            <input id="summery_field" wire:model="return_date" type="date" name="summery">
+                                                                                            @error('return_date') <span class="text-danger small">{{ $message }}</span>@enderror
+                                                                                        </div>
+                                                                                  
+                                                                                        <div class="review-form-actions">
+                                                                                            @if (Auth::check())
+                                                                                                @if ($ri->status == 'In use'|| $ri->status == 'Pending')
+                                                                                                    <button disabled>item status is not available</button>
+                                                                                                @else
+                                                                                                    <button  wire:click="createloan()" class="tw-inline tw-bottom-65 tw-right-30 tw-text-center
+                                                                                                    tw-cursor-pointer tw-text-white tw-w-30 tw-h-40
+                                                                                                    tw-uppercase tw-bg-yellow-500">Submit Request</button>
+                                                                                                @endif
+                                                                                                
                                                                                             @else
-                                                                                                <button  wire:click="createloan()" style="bottom: 65px;right: 30px;text-align: center;cursor: pointer;
-                                                                                                color: #fff;width: 30%;height: 40px;/* font-weight: 600;
-                                                                                                 */text-transform: uppercase;background: #f1ac06;">Submit Request</button>
+                                                                                                <button disabled>Please log in to submit a request</button>
                                                                                             @endif
-                                                                                            
-                                                                                        @else
-                                                                                            <button disabled>Please log in to submit a request</button>
-                                                                                        @endif
-                                                                                       
+                                                                                        
+                                                                                        </div>
                                                                                     </div>
-                                                                                </div>
-                                                                            </form>
-                                                                        </li>
-                                                                        <!-- Single Review List End -->
-                                                                 
-                                                                 
-                                                                    </ul>
-                                                                </div>
-                                                                <!-- Reviews End -->
-                                                              
-                                                      
-                                                       
+                                                                                </form>
+                                                                            </li>
+                                                                            <!-- Single Review List End -->
+                                                                    
+                                                                    
+                                                                        </ul>
+                                                                    </div>
+                                                                    <!-- Reviews End -->
+                                                                
+                                                        
+                                                        
+                                                            </div>
+                                                            <!-- Product Thumbnail Tab Content End -->
+                                        
                                                         </div>
-                                                        <!-- Product Thumbnail Tab Content End -->
-                                    
-                                                    </div>
                                                     </div>
                                                 </div>
                                             </template>
 
-                                            <a class="add-cart" x-on:click="popup = ! popup" >Request item</a>
+                                            <a class="add-cart" x-on:click="popup = !popup" >Request item</a>
                                         </div>                                        
                                     </div>
                                 </div>
@@ -363,7 +353,7 @@
 
 <script>
 
-    var map = L.map('map').setView([{{ $item->user->location()->first()->lat }}, {{ $item->user->location()->first()->long }}], 13);
+    var map = L.map('map').setView([{{ $item->user->location->lat }}, {{ $item->user->location->long }}], 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
@@ -373,12 +363,4 @@
 
 </script>
 @endpush
-@push('scripts')
-<script>
-    document.addEventListener('livewire:load', function () {
-        Livewire.on('refreshPage', function () {
-            location.reload(); // Reload the page
-        });
-    });
-</script>
-@endpush
+

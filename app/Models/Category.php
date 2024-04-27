@@ -11,6 +11,7 @@ use App\Models\Item;
 class Category extends Model
 {
     use HasFactory, SoftDeletes;
+    protected $guarded = [];
 
     /**
      * Get all of the comments for the Category

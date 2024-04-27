@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ __('Vuexy') }}</title>
+    <title>{{ __('NEIGHBOR CONNECT') }}</title>
     {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('cpanel/app-assets/css/bootstrap.css') }}">
 
@@ -86,7 +86,7 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{ route('items.own') }}" style="margin-left: 5px; color: #007bff;">{{ __('Vuexy') }}</a>
+        <a class="navbar-brand" href="{{ route('items.own') }}" style="margin-left: 5px; color: #007bff;">{{ __('NEIGHBOR CONNECT') }}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

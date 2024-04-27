@@ -124,7 +124,7 @@
                                 <td>{{ $item->description_en }}</td>
                                 <td>{{ $item->description_ar }}</td>
                                 <td>{{ $item->fee . '$' }}</td>
-                                <td>{{ $item->allow_time . 'M' }}</td>
+                                <td>{{ $item->allow_time . 'D' }}</td>
                                 <td>
                                     @if (getUserGuard() == 'admin')
                                         <a
@@ -199,6 +199,44 @@
                                     </td>
                                 @endif
                             </tr>
+                            <div class="modal fade modal-info text-start" id="info" tabindex="-1" wire:ignore
+                            aria-labelledby="myModalLabel130" aria-hidden="true">
+                           <div class="modal-dialog modal-dialog-centered">
+                               <div class="modal-content">
+                                   <div class="modal-header">
+                                       <h5 class="modal-title" id="myModalLabel130">{{ __('Apply Item') }}</h5>
+                                       <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                               aria-label="Close"></button>
+                                   </div>
+                                   <div class="modal-body">
+                                       {{ __('After apply the request, you can take action about item from dashboard page.') }}
+                                       <form>
+                                           <div class="input__box">
+                                               <span>Note:</span><br>
+                                               <label>* if any damage or lost for the item user have to pay {{$item->fee}} $</label><br>
+                                               <label>* the max. allowed days to borrow the item is {{$item->allow_time}}</label><br>
+                                               <label>* if a user didn't return the item in the agreed day, he/she has to pay {{$item->fee}} $</label>
+                                           </div>
+                                           <div class="input__box">
+                                               <span>Issued Date</span>
+                                               <input id="issued_date_field" wire:model="issued_date" type="date" name="issued_date">
+                                               @error('issued_date') <span class="text-danger small">{{ $message }}</span>@enderror
+                                           </div>
+                                           <div class="input__box">
+                                               <span>Return Date</span>
+                                               <input id="return_date_field" wire:model="return_date" type="date" name="return_date">
+                                               @error('return_date') <span class="text-danger small">{{ $message }}</span>@enderror
+                                           </div>
+                                           <div class="modal-footer">
+                                               <button type="button" class="btn btn-info" data-bs-dismiss="modal"
+                                                       wire:click="applyItem()">{{ __('Apply') }}</button>
+                                           </div>
+                                       </form>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       
                         @endforeach
                     </tbody>
                 </table>
@@ -230,29 +268,7 @@
             </div>
         </div>
 
-        <div class="modal fade modal-info text-start" id="info" tabindex="-1" wire:ignore
-            aria-labelledby="myModalLabel130" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="myModalLabel130">{{ __('Apply Item') }}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        {{ __('After apply the request, you can take action about item from dashboard page.') }}
-                        <x-input-component label="At Date" name="applyDate" type="date"
-                            icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>' />
-                        <x-input-component label="End Date" name="endDate" type="date"
-                            icon='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>' />
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-info" data-bs-dismiss="modal"
-                            wire:click="applyItem()">{{ __('Apply') }}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+
 
     </div>
     <!-- list section end -->

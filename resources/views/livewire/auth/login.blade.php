@@ -2,7 +2,7 @@
     <x-alert-component />
     <div class="mb-1">
         <label for="login-email" class="form-label">{{ __('Email') }}</label>
-        <input type="text" class="form-control @error('email')
+        <input required type="text" class="form-control @error('email')
             is-invalide
         @enderror"
             id="login-email" wire:model="email" name="login-email" placeholder="john@example.com"

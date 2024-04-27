@@ -78,7 +78,7 @@
                                 aria-label="Item: activate to sort column ascending">{{ __('FEEs') }}</th>
                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
                                 colspan="1" style="width: 120.25px;"
-                                aria-label="Item: activate to sort column ascending">{{ __('Time (In Minutes)') }}</th>
+                                aria-label="Item: activate to sort column ascending">{{ __('Allow Time (In days)') }}</th>
                             {{-- <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
                                 colspan="1" style="width: 120.25px;"
                                 aria-label="Item: activate to sort column ascending">{{ __('User') }}</th> --}}

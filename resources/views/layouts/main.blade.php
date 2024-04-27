@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
     <meta name="description"
-        content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+        content="NEIGHBOR CONNECT admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords"
-        content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+        content="admin template, NEIGHBOR CONNECT admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
     <title> @yield('page-title') </title>
     <link rel="apple-touch-icon" href="{{ asset('cpanel/app-assets/images/ico/apple-icon-120.png') }}">
@@ -218,7 +218,7 @@
                                     </g>
                                 </g>
                             </svg></span>
-                        <h2 class="brand-text">Vuexy</h2>
+                        <h2 class="brand-text">NEIGHBOR CONNECT</h2>
                     </a></li>
                 <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0"
                         data-bs-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4"
@@ -271,7 +271,7 @@
                                 <strong>Info:</strong> This layout can be useful for getting started with empty content
                                 section. Please check
                                 the&nbsp;<a class="text-primary"
-                                    href="https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/documentation/documentation-layout-empty.html"
+                                    href="https://pixinvent.com/demo/NEIGHBOR CONNECT-html-bootstrap-admin-template/documentation/documentation-layout-empty.html"
                                     target="_blank">Layout empty documentation</a>&nbsp; for more details.
                             </div>
                         </div> --}}

@@ -16,6 +16,8 @@ class Index extends Component
     public $availability;
     public $applyDate;
     public $endDate;
+    public $item_id, $itme="";
+    public $issued_date, $return_date, $user_id;
 
     public function mount()
     {
@@ -68,7 +70,26 @@ class Index extends Component
 
     public function applyItem()
     {
+
         $item = Item::find(Crypt::decrypt(session('item_to_borrow')));
+
+        // Validate the input fields
+        $validatedData = $this->validate([
+            'item_id' => [
+                'required',
+                'exists:items,id',
+                function ($attribute, $value, $fail) {
+                    $item = item::find($value);
+                    if (!$item || $item->status !== 'Available') {
+                        $fail('The selected item is not available.');
+                    }
+                },
+            ],
+            'user_id' => 'required|exists:users,id',
+            'issued_date' => 'required|date|after_or_equal:today',
+            'return_date' => 'required|date|after_or_equal:issued_date|before_or_equal:'
+             . date('Y-m-d', strtotime('+'.$item->allow_time.' days', strtotime($this->issued_date))),
+        ]);
 
         $isApplied = ApplyItems::create([
             'owner_id' => $item->user_id,

@@ -24,10 +24,6 @@ class ProductComponent extends Component
 
     
     function createloan() {
-      
-        //$this->showElement = false;
-        //$this->emit('refreshPage');
-        //dd($this->item->user->fname);
 
         $this->user_id = Auth::user()->id;
         $this->item = item::find($this->item_id);
@@ -64,8 +60,8 @@ class ProductComponent extends Component
         
         
     
-        return redirect('/dashboard/applied-items')->with('status', 'Loan request has been added!');
-        //session()->flash('status', $isDeleted);
+        //return redirect('/dashboard/applied-items')->with('status', 'Loan request has been added!');
+        session()->flash('status', $isDeleted);
     }
  
 
