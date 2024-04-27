@@ -50,9 +50,9 @@ class Own extends Component
     }
 
     //
-    public function deleteAdmin()
+    public function deleteAdmin($id)
     {
-        $isDeleted = Item::where('id', Crypt::decrypt(session('admin_will_delete')))->delete();
+        $isDeleted = Item::where('id', $id)->delete();
 
         session()->flash('message', $isDeleted ? __('Item deleted successfully') : __('Failed to deleted the item, please try again!'));
         session()->flash('status', $isDeleted);

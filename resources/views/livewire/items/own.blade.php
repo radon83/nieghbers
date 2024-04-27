@@ -154,7 +154,7 @@
 
                                                 @if (authorized('Delete item'))
                                                     <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                        wire:click="saveAdminWillDeleted('{{ Crypt::encrypt($item->id) }}')"
+                                                       
                                                         data-bs-target="#danger">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="14"
                                                             height="14" viewBox="0 0 24 24" fill="none"
@@ -176,6 +176,25 @@
                                 @endif
 
                             </tr>
+                            <div class="modal fade modal-danger text-start" id="danger" tabindex="-1" wire:ignore
+                            aria-labelledby="myModalLabel120" style="display: none;" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="myModalLabel120">{{ __('Delete Item') }}</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {{ __('After you delete this item, system can keep his information for 30 days only. You can back them up before end this time.') }}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger waves-effect waves-float waves-light"
+                                            wire:click="deleteAdmin({{$item->id}})" data-bs-dismiss="modal">{{ __('Accept') }}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         @endforeach
                     </tbody>
                 </table>
@@ -187,25 +206,7 @@
             </div>
         </div>
 
-        <div class="modal fade modal-danger text-start" id="danger" tabindex="-1" wire:ignore
-            aria-labelledby="myModalLabel120" style="display: none;" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="myModalLabel120">{{ __('Delete Item') }}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        {{ __('After you delete this item, system can keep his information for 30 days only. You can back them up before end this time.') }}
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger waves-effect waves-float waves-light"
-                            wire:click="deleteAdmin()" data-bs-dismiss="modal">{{ __('Accept') }}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+      
 
     </div>
     <!-- list section end -->
