@@ -269,8 +269,6 @@
                                                                             <!-- Single Review List End -->
                                                                             <!-- Single Review List Start -->
                                                                             <li>
-                                                                                <form style="margin: 44px;">
-                                                                                
                                                                                     <div class="review_form_field">
                                                                                         <div class="input__box">
                                                                                         
@@ -279,12 +277,13 @@
                                                                                         </div>
                                                                                         <div class="input__box">
                                                                                             <span>Issued Date</span>
-                                                                                            <input id="nickname_field" wire:model="issued_date" type="date" name="nickname">
-                                                                                            @error('issued_date') <span class="text-danger small">{{ $message }}</span>@enderror                                            
+                                                                                            <input wire:model="issued_date" type="date" name="issued_date">
+                                                                                            @error('issued_date') <span class="text-danger small">{{ $message }}</span>@enderror
+                                                                                                                                        
                                                                                         </div>
                                                                                         <div class="input__box">
                                                                                             <span>Retuen Date</span>
-                                                                                            <input id="summery_field" wire:model="return_date" type="date" name="summery">
+                                                                                            <input wire:model="return_date" type="date" name="return_date">
                                                                                             @error('return_date') <span class="text-danger small">{{ $message }}</span>@enderror
                                                                                         </div>
                                                                                   
@@ -293,7 +292,7 @@
                                                                                                 @if ($ri->status == 'In use'|| $ri->status == 'Pending')
                                                                                                     <button disabled>item status is not available</button>
                                                                                                 @else
-                                                                                                    <button  wire:click="createloan()" class="tw-inline tw-bottom-65 tw-right-30 tw-text-center
+                                                                                                    <button  wire:click="createloan" class="tw-inline tw-bottom-65 tw-right-30 tw-text-center
                                                                                                     tw-cursor-pointer tw-text-white tw-w-30 tw-h-40
                                                                                                     tw-uppercase tw-bg-yellow-500">Submit Request</button>
                                                                                                 @endif
@@ -304,7 +303,7 @@
                                                                                         
                                                                                         </div>
                                                                                     </div>
-                                                                                </form>
+                                                                        
                                                                             </li>
                                                                             <!-- Single Review List End -->
                                                                     

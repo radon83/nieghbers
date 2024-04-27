@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class ProductComponent extends Component
 {
     use WithPagination;
-    public $category_slug, $item_id, $itme="", $showElement=true;
+    public $category_slug, $item_id, $itme="";
     public $issued_date, $return_date, $user_id;
     protected $paginationTheme = 'bootstrap';
 
@@ -23,7 +23,7 @@ class ProductComponent extends Component
     }
 
     
-    function createloan() {
+    public function createloan() {
 
         $this->user_id = Auth::user()->id;
         $this->item = item::find($this->item_id);
@@ -31,16 +31,13 @@ class ProductComponent extends Component
             'item_id' => [
                 'required',
                 'exists:items,id',
-                function ($attribute, $value, $fail) {
-                    $item = item::find($value);
-                    if (!$item || $item->status !== 'Available') {
-                        $fail('The selected item is not available.');
-                    }
-                },
+                
             ],
             'user_id' => 'required|exists:users,id',
             'issued_date' => 'required|date|after_or_equal:today',
-            'return_date' => 'required|date|after_or_equal:issued_date|before_or_equal:' . date('Y-m-d', strtotime('+'.$this->item->allow_time.' days', strtotime($this->issued_date))),
+            'return_date' => 'required|date|after_or_equal:issued_date|
+            before_or_equal:' . date('Y-m-d', strtotime('+'.$this->item->allow_time.' days',
+             strtotime($this->issued_date))),
         ]);
       
     
@@ -60,8 +57,8 @@ class ProductComponent extends Component
         
         
     
-        //return redirect('/dashboard/applied-items')->with('status', 'Loan request has been added!');
-        session()->flash('status', $isDeleted);
+        return redirect('/dashboard/applied-items')->with('status', 'Loan request has been added!');
+        //session()->flash('status', "Loan added");
     }
  
 

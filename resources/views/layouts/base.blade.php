@@ -111,24 +111,11 @@
                                                 </ul>
                                                 <!-- Home Version Dropdown End -->
                                             </li>                                        
-                                        
-                                            <li><a href="#">pages<i class="fa fa-angle-down"></i></a>
-                                                <!-- Home Version Dropdown Start -->
-                                                <ul class="ht-dropdown dropdown-style-two">
-                                                    <li><a href="{{route('login')}}">Login Page</a></li>
-                                                    <li><a href="{{route('reg')}}">Register Page</a></li>
-                                               
-                                                  
-                                                    
-                                                </ul>
-                                                <!-- Home Version Dropdown End -->
-                                            </li>
+                                         
+                                            
                                             <li><a href="#">contact us</a></li> 
-                                            @if (auth()->check() || auth('admin')->check())
-                                            <li>
-                                                <a href="{{ route('items.index') }}">{{ __('Dashboard') }}</a>
-                                            </li>
-                                        @endif                                       
+                                        
+                                                                              
                                         </ul>
                                     </nav>
                                 </div>
@@ -139,52 +126,23 @@
                             <div class="col-auto">
                                 <div class="cart-box text-end">
                                     <ul>
-                                        <li><a href="compare.html"><i class="fa fa-cog"></i></a>
+                                        <li><a href="#"><i class="fa fa-cog"></i></a>
                                             <ul class="ht-dropdown">
-                                                <li><a href="{{route('login')}}">Login</a></li>
-                                                <li><a href="{{route('reg')}}">Register</a></li>
+                                                @if (Auth::check())
+                                                <li>
+                                                    <a href="{{ route('items.index') }}">{{ __('Dashboard') }}</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ route('logout') }}">{{ __('Logout') }}</a>
+                                                </li>
+                                                @else
+                                                <li><a href="{{route('login')}}">Login Page</a></li>
+                                                <li><a href="{{route('reg')}}">Register Page</a></li>
+                                                @endif
                                                                                       
                                             </ul>
                                         </li>                                    
-                                        <li><a href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-basket"></i><span class="cart-counter">2</span></a>
-                                            <ul class="ht-dropdown main-cart-box">
-                                                <li>
-                                                    <!-- Cart Box Start -->
-                                                    <div class="single-cart-box">
-                                                        <div class="cart-img">
-                                                            <a href="#"><img src="img/menu/1.jpg" alt="cart-image"></a>
-                                                        </div>
-                                                        <div class="cart-content">
-                                                            <h6><a href="product.html">Products Name</a></h6>
-                                                            <span>1 × $399.00</span>
-                                                        </div>
-                                                        <a class="del-icone" href="#"><i class="fa fa-window-close-o"></i></a>
-                                                    </div>
-                                                    <!-- Cart Box End -->
-                                                    <!-- Cart Box Start -->
-                                                    <div class="single-cart-box">
-                                                        <div class="cart-img">
-                                                            <a href="#"><img src="img/menu/2.jpg" alt="cart-image"></a>
-                                                        </div>
-                                                        <div class="cart-content">
-                                                            <h6><a href="product.html">Products Name</a></h6>
-                                                            <span>2 × $299.00</span>
-                                                        </div>
-                                                        <a class="del-icone" href="#"><i class="fa fa-window-close-o"></i></a>
-                                                    </div>
-                                                    <!-- Cart Box End -->
-                                                    <!-- Cart Footer Inner Start -->
-                                                    <div class="cart-footer fix">
-                                                        <h5>Total:<span class="f-right">$698.00</span></h5>
-                                                        <div class="cart-actions">
-                                                            <a class="checkout" href="checkout.html">Checkout</a>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Cart Footer Inner End -->
-                                                </li>
-                                            </ul>
-                                        </li>
+                                        
                                     </ul>
                                 </div>
                             </div>
@@ -197,7 +155,7 @@
                                             <li><a href="/">home</a>
                                              
                                             </li>
-                                            <li><a href="shop.html">shop</a>
+                                            <li><a href="#shop">shop</a>
                                                 <!-- Mobile Menu Dropdown Start -->
                                                 <ul>
                                                     <li><a href="product.html">Shop</a>

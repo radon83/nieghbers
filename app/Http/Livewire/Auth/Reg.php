@@ -43,10 +43,10 @@ class Reg extends Component
                 'status' => 'active',
             ]);
 
-            if ($userId) {
-                buildUserSettings($userId, 'user');
-                detectUserLocation($userId, $request);
-            }
+    
+            buildUserSettings($userId, 'user');
+            detectUserLocation($userId, $request);
+        
 
             session()->flash('message', $userId ? __('Registration successfully') : __('Failed to register, please try again!'));
             session()->flash('status', $userId);
