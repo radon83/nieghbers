@@ -64,15 +64,23 @@ class Applied extends Component
         session()->flash('value_to_cancel_borrow', $enc_id);
     }
 
-    public function submitCancellationBorrow()
+    public function submitCancellationBorrow($id)
     {
-        $id = Crypt::decrypt(session('value_to_cancel_borrow'));
+        //$id = Crypt::decrypt(session('value_to_cancel_borrow'));
+
+        $applyItem = ApplyItems::find( $id);
+        $item = item::find($applyItem->item_id);
+
 
         $isDeleted = ApplyItems::where([
             ['user_id', '=', auth()->user()->id],
             ['status', '=', 'applied'],
             ['id', '=', $id],
         ])->delete();
+
+        
+
+        $item->update(['status' => 'Available']);
 
         //$this->item->update(['status' => 'Available']);
         session()->flash('message', $isDeleted ? __('Order canceled successfully') : __('Failed to cancelate order, please try again!'));

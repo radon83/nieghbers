@@ -14,6 +14,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MarkerController;
 use App\Http\Livewire\HomeComponent;
+use App\Http\Livewire\items\requestingItemComponent;
 use App\Http\Livewire\CategoryComponent;
 use App\Http\Livewire\ProductComponent;
 use App\Models\Settings;
@@ -43,7 +44,7 @@ Route::prefix('dashboard')->middleware(['auth:admin,user', 'prevent_blocked_user
     Route::get('/requested-items', [ItemController::class, 'requestedItems'])->name('items.requested');
     Route::get('/location', [ControlPanelController::class, 'getLocation'])->name('users.location');
     Route::post('dashboard/store-location', [MarkerController::class,'storeLocation']);
-    //Route::post('/{category_slug}/{item_id}', ProductComponent::class);
+    Route::get('/items/{item_id}', requestingItemComponent::class);
 
 
     // Resources - Routes

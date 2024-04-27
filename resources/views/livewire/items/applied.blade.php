@@ -125,7 +125,7 @@
                                     <td>
                                         @if ($item->status == 'applied')
                                             <button type="button" data-bs-toggle="modal" data-bs-target="#warning"
-                                                wire:click="setValueToCancelBorrow('{{ Crypt::encrypt($item->id) }}')"
+                                           
                                                 class="btn btn-warning waves-effect waves-float waves-light">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -143,6 +143,25 @@
                                                 </svg>
                                                 <span>{{ __('Cancel') }}</span>
                                             </button>
+                                            <div class="modal fade text-start modal-warning" id="warning" tabindex="-1" wire:ignore
+                                            aria-labelledby="myModalLabel140" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="myModalLabel140">{{ __('Cancel Borrow Order') }}</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        {{ __('After you complete the cancelation process of this item, you can re-borrow it again only via request a new borrow request!') }}
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-warning" wire:click="submitCancellationBorrow({{$item->id}})"
+                                                            data-bs-dismiss="modal">{{ __('Accept') }}</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         @elseif ($item->status == 'approved')
                                         <button type="button"
                                                     wire:click="saveApplyItem('{{ Crypt::encrypt($item->id) }}')"

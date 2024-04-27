@@ -74,7 +74,8 @@
                             <!--  logo Start-->
                             <div class="col-auto">
                                 <div class="logo">
-                                    <a href="/"><img src="{{asset('img/logo/logo.png')}}" alt="logo-image"></a>
+                                   
+                                    <a href="/"><img src="{{asset('img/logo/logo2.png')}}" alt="" ></a>
                                 </div>
                             </div>
                            <!--  logo End -->

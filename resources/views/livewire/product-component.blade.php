@@ -131,12 +131,13 @@
                         </div>
                         <div class="pro-ref mb-15">
                             <p><span class="in-stock">FEE</span><span class="sku">{{$item->fee}} $</span></p>
+                            <p><span class="in-stock">Item Status: </span><span class="sku">{{$item->status}} </span></p>
                         </div>
                         <div class="box-quantity">
-                            <form action="#">
+                          
                    
-                                <a class="add-cart" x-on:click="popup = ! popup" >Request item</a>
-                            </form>
+                                <a class="add-cart" href="{{url('dashboard/items/'.$item->id)}}">Request item</a>
+                          
                         </div>
                        
                         <p class="ptb-20">{{ session('lang') == 'ar' ? $item->description_ar : $item->description_en }}</p>
@@ -222,108 +223,11 @@
                                 <p><span class="price">{{$ri->user->fname}}</span></p>
                                 <div class="pro-actions">
                                     <div class="actions-secondary">
-                                        <div x-data="{ popup: false }">
-                                            <template x-teleport="body">
-                                                <div
-                                                    class="fixed inset-0 z-[9999999] flex items-center justify-center w-full h-full cursor-pointer bg-opacity-90 bg-zinc-900"
-                                                    x-show="popup"
-                                                    x-transition:enter="transition transition-opacity transform ease-in duration-300"
-                                                    x-transition:enter-start="opacity-0"
-                                                    x-transition:enter-end="opacity-100"
-                                                    x-transition:leave="transition transition-opacity transform ease-in duration-500"
-                                                    x-transition:leave-start="opacity-100"
-                                                    x-transition:leave-end="opacity-0"
-                                                >
-                                                    <div
-                                                        class="flex-col flex min-3-xl pb-2 phone:!border-t-1 phone:!border-0 phone:!bottom-0 tab:!border-t-1 tab:!border-0 tab:!bottom-0 shadow dark:shadow-zinc-800 overflow-y-scroll no-scrollbar dark:bg-zinc-800 border-zinc-300 dark:border-zinc-600 phone:fixed tab:fixed laptop:relative desktop:relative ease-in-out z-50 p-2 bg-zinc-50 border cursor-auto phone:p-4 tab:p-6 laptop:p-8 desktop:p-10 rounded-2xl phone:!rounded-b-none phone:!rounded-t-3xl tab:!rounded-t-3xl tab:!rounded-b-none laptop:!rounded-2xl desktop:!rounded-2xl phone:max-h-[96%] tab:max-h-[96%] laptop:max-h-[94%] desktop:max-h-[94%] phone:w-full tab:w-full laptop:w-1/2 desktop:w-1/3 max-w-7xl"
-                                                        :class="popup ? 'animate__animated animate__fadeInUp animate__faster' : 'animate__animated animate__fadeOutDown animate__faster'"
-                                                        @click.outside="popup = false"
-                                                        x-show="popup"
-                                                        x-transition:enter="transition-transform duration-300 opacity-100"
-                                                        x-transition:enter-start="translate-y-full opacity-100"
-                                                        x-transition:enter-end="translate-y-0 opacity-100"
-                                                        x-transition:leave="transition-transform duration-500 opacity-100"
-                                                        x-transition:leave-start="transform opacity-100"
-                                                        x-transition:leave-end="transform translate-y-0 opacity-100"
-                                                    >
-                                                       <div class="col-sm-12">
-                                                    
-                                                            <!-- Product Thumbnail Tab Content Start -->
-                                                            <div class="tab-content thumb-content border-default">
-                                                        
-                                                                    <!-- Reviews Start -->
-                                                                    <div class="review">
-                                                                        <div class="group-title">
-                                                                            <h2>Request {{ session('lang') == 'ar' ? $ri->name_ar : $ri->name_en }} Item </h2>
-                                                                        </div>
-                                                                        <h4 class="review-mini-title">Owner: {{$ri->user->fname}}</h4>
-                                                                        <ul class="review-list">
-                                                                            <!-- Single Review List Start -->
-                                                                        
-                                                                            <span>Note:</span><br>
-                                                                            
-                                                                            <label>* if any damage or lost for the item user have to pay {{$ri->fee}} $</label><br>
-                                                                            <label>* the max. allowed days to borrow the item is {{$ri->allow_time}}</label><br>
-                                                                            <label>* if a user didn't return the item in the agreed day, he/she has to pay {{$ri->fee}} $</label>
-                                                                        
-                                                                            <!-- Single Review List End -->
-                                                                            <!-- Single Review List Start -->
-                                                                            <li>
-                                                                                    <div class="review_form_field">
-                                                                                        <div class="input__box">
-                                                                                        
-                                                                                            <input id="item_id" wire:model="item_id" type="hidden" name="item_id">
-                                                                                            @error('item_id') <span class="text-danger small">{{ $message }}</span>@enderror                                            
-                                                                                        </div>
-                                                                                        <div class="input__box">
-                                                                                            <span>Issued Date</span>
-                                                                                            <input wire:model="issued_date" type="date" name="issued_date">
-                                                                                            @error('issued_date') <span class="text-danger small">{{ $message }}</span>@enderror
-                                                                                                                                        
-                                                                                        </div>
-                                                                                        <div class="input__box">
-                                                                                            <span>Retuen Date</span>
-                                                                                            <input wire:model="return_date" type="date" name="return_date">
-                                                                                            @error('return_date') <span class="text-danger small">{{ $message }}</span>@enderror
-                                                                                        </div>
-                                                                                  
-                                                                                        <div class="review-form-actions">
-                                                                                            @if (Auth::check())
-                                                                                                @if ($ri->status == 'In use'|| $ri->status == 'Pending')
-                                                                                                    <button disabled>item status is not available</button>
-                                                                                                @else
-                                                                                                    <button  wire:click="createloan" class="tw-inline tw-bottom-65 tw-right-30 tw-text-center
-                                                                                                    tw-cursor-pointer tw-text-white tw-w-30 tw-h-40
-                                                                                                    tw-uppercase tw-bg-yellow-500">Submit Request</button>
-                                                                                                @endif
-                                                                                                
-                                                                                            @else
-                                                                                                <button disabled>Please log in to submit a request</button>
-                                                                                            @endif
-                                                                                        
-                                                                                        </div>
-                                                                                    </div>
-                                                                        
-                                                                            </li>
-                                                                            <!-- Single Review List End -->
-                                                                    
-                                                                    
-                                                                        </ul>
-                                                                    </div>
-                                                                    <!-- Reviews End -->
-                                                                
-                                                        
-                                                        
-                                                            </div>
-                                                            <!-- Product Thumbnail Tab Content End -->
-                                        
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </template>
+                                      
+                                     
+                                            <a class="add-cart" href="{{url('dashboard/items/'.$ri->id)}}" >Request item</a>
 
-                                            <a class="add-cart" x-on:click="popup = !popup" >Request item</a>
-                                        </div>                                        
+                                                                           
                                     </div>
                                 </div>
                             </div>
