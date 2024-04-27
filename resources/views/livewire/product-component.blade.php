@@ -136,7 +136,7 @@
                         <div class="box-quantity">
                           
                    
-                                <a class="add-cart" href="{{url('dashboard/items/'.$item->id)}}">Request item</a>
+                                <a class="add-cart" href="{{url('dashboard/request-items/'.$item->id)}}">Request item</a>
                           
                         </div>
                        
@@ -225,7 +225,7 @@
                                     <div class="actions-secondary">
                                       
                                      
-                                            <a class="add-cart" href="{{url('dashboard/items/'.$ri->id)}}" >Request item</a>
+                                            <a class="add-cart" href="{{url('dashboard/request-items/'.$ri->id)}}" >Request item</a>
 
                                                                            
                                     </div>

@@ -44,7 +44,7 @@ Route::prefix('dashboard')->middleware(['auth:admin,user', 'prevent_blocked_user
     Route::get('/requested-items', [ItemController::class, 'requestedItems'])->name('items.requested');
     Route::get('/location', [ControlPanelController::class, 'getLocation'])->name('users.location');
     Route::post('dashboard/store-location', [MarkerController::class,'storeLocation']);
-    Route::get('/items/{item_id}', requestingItemComponent::class);
+    Route::get('/request-items/{item_id}', requestingItemComponent::class);
 
 
     // Resources - Routes

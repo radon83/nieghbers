@@ -25,7 +25,7 @@ return new class extends Migration
             $table->integer('city_id');
             $table->integer('place_id');
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
-            $table->integer('allow_time')->default(7);
+            $table->integer('allow_time')->default(7)->nullable();
             $table->float('fee')->unsigned();
             $table->json('images')->nullable();
             $table->timestamp('deleted_at')->nullable();
